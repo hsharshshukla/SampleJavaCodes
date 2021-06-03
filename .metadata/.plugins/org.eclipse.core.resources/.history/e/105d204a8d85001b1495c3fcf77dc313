@@ -1,0 +1,47 @@
+
+// Definition for a Node.
+class Node {
+    int val;
+    Node next;
+    Node random;
+
+    public Node(int val) {
+        this.val = val;
+        this.next = null;
+        this.random = null;
+    }
+}
+
+
+class Basic {
+//    public Node copyRandomList(Node head) {
+	public static void main(String args[]) {
+        Node node = head;
+        //Creating new links 
+        while(node !=null){
+            Node temp = new Node(node.val);
+            temp.next = node.next;
+            node.next = temp;
+            node = temp.next;
+        }
+        //setting up random links for new list
+        
+       
+        node = head;
+        while(node !=null){
+            node.next.random=node.random;
+            node = node.next.next;
+        }
+        
+        //setting up originals
+        node = head;
+        Node result  = head.next;
+        while(node.next !=null){
+            node.next = node.next.next;
+            node = node.next.next;
+        }
+        int k=0;
+        //return result;
+        
+    }
+}

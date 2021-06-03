@@ -1,0 +1,22 @@
+import java.rmi.*;
+
+public class AddClient {
+	public static void main(String args[]) {
+		try {
+			String addServerURL = "rmi://"+args[0]+"/AddServer";
+			AddServerIntf addserverintf = 
+						(AddServerIntf)Naming.lookup(addServerURL);
+			
+			double a = Double.valueOf(args[1]).doubleValue();
+			double b  = Double.valueOf(args[0]).doubleValue();
+			
+			double result = addserverintf.add(a, b);
+			
+		}catch(Exception e) {
+			System.out.println("Exception : "+e);
+		}
+		
+		
+		
+	}
+}

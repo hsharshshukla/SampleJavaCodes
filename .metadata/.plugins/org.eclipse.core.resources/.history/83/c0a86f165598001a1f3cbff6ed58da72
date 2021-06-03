@@ -1,0 +1,12 @@
+import java.util.*;
+class Solution {
+	public static void main(String args[]) {
+		Solution sl = new Solution();
+ int board[][] = { { 0, 0, 0, 0 }, 
+                   { 0, 0, 0, 0 }, 
+                   { 0, 0, 0, 0 }, 
+                   { 0, 0, 0, 0 } }; 
+	}
+
+	
+}

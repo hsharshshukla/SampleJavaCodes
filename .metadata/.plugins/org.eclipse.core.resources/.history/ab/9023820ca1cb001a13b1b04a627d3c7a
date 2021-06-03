@@ -1,0 +1,27 @@
+import java.util.*;
+
+class Solution{
+	bstNode bstroot = new bNode(9);
+	bstroot.left = new bNode(2);
+	bstroot.right = new bNode(5);
+	bstroot.left.left = new bNode(1);
+	bstroot.left.right = new bNode(3);
+	
+	public static void main(String[] args) {
+		
+		
+		
+	}
+	
+}
+
+class bstNode{
+	int data;
+	bNode left;
+	bNode right;
+	bNode (int d){
+		data = d;
+		left = null;
+		right = null;
+	}
+}

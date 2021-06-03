@@ -1,0 +1,39 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+public class Solution {
+
+
+
+    // Complete the getLuckyFloorNumber function below.
+    static int getLuckyFloorNumber(int n) {
+        int count=0;
+       for(int i=1;i<=n;i++){
+           //convert to string to match
+           String str = String.valueOf(i);
+          if(str.contains("4") || str.contains("13")){
+              count += 2;
+          }else{
+              count++;
+          }
+          String st = String.valueOf(count);
+          while(st.contains("4") || st.contains("13")){
+              count++;
+          }
+       }
+       return count;
+    }
+
+    public static void main(String[] args) throws IOException {
+        
+    	int n=1;
+        int res = getLuckyFloorNumber(n);
+
+        System.out.print(res);
+    }
+}

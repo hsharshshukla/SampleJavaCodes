@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+
+public class addNumber {
+	public static void main(String args[]) {
+		Scanner input  = new Scanner(System.in);
+		
+		String a = input.nextLine();				
+		
+		int al = a.length();
+		
+		a = a.substring(1,al-2);
+		a = a.replace(",", "");
+		al =a.length();
+		
+		/*a = a.replace("[", "");
+		a = a.replace("]", "");
+		a = a.replace(",", "");*/
+		double ax=0;
+		int j=0;
+		for (double i=0;i<a.length();i++) {
+			double temp  = (double)a.charAt(j);
+			ax = ax  + Math.pow(temp,i );		
+					
+			j++;
+		}
+		
+		String b  = input.nextLine();
+		
+		
+	}
+}

@@ -1,0 +1,76 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    // Complete the isValid function below.
+    static String isValid(String s) {
+         int[] arr = new int[123];
+        int max=0;
+        int min=0;
+        for(int i=0;i<s.length();i++){
+            arr[s.charAt(i)]++;
+        }
+        int count=0;
+        int base=0;/*
+        for(int i=97;i<123;i++){
+            if(i==97) {
+                base =arr[97];
+            }
+            if(base>arr[i] && arr[i] !=0) {
+                count+= base-arr[i];
+            }
+            else if(arr[i]>base) {
+                count += arr[i]-base;
+            }
+            else {}
+            if(count>1) {
+                
+                return ("NO");
+            }
+            
+        }
+        return ("YES");*/
+
+        //
+        Arrays.sort(arr);
+        int i=97;
+        while(arr[i]==0){
+            i++;
+        }
+        min = arr[i];
+        max= arr[122];
+
+        if(max==min){
+            return ("YES");
+        }
+        else if((max-min==1 && max>arr[122]) ||
+                 (min==1 && arr[i+1]==max)){
+                     return ("Yes");
+                 }
+                 return ("NO");
+
+    }
+
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) throws IOException {
+        //BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        String s = scanner.nextLine();
+
+        String result = isValid(s);
+
+        //bufferedWriter.write(result);
+        //bufferedWriter.newLine();
+
+        //bufferedWriter.close();
+
+        scanner.close();
+    }
+}

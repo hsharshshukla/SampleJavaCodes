@@ -1,0 +1,30 @@
+import java.util.*;
+class Solution {
+	public static void main(String args[]) {
+		Solution sl = new Solution();
+		sl.combinationSum(new int[] {2,3,5}, 8);
+	}
+	
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> result = new ArrayList<>();
+        Arrays.sort(candidates);
+        
+        search(candidates,0,target,new ArrayList<Integer>(),result);
+        return result;
+    }
+    public void search(int[] candidates,int index,int target,List<Integer> current, List<List<Integer>> result){
+        if(target==0){
+            result.add(current);
+            return;
+        }
+        if(target<0){
+            return;
+        }
+        
+        for(int i =0;i<candidates.length;i++){
+            current.add(candidates[i]);
+            search(candidates,i+1,target-candidates[i],current,result);
+            current.remove(current.size()-1);
+        }
+    }
+}

@@ -1,0 +1,6 @@
+import java.rmi.*;
+import java.net.*;
+
+public class AddServer {
+
+}

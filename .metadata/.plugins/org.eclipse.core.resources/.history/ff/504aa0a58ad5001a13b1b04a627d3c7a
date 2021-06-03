@@ -1,0 +1,150 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    // Complete the minimumSwaps function below.
+    static int minimumSwaps(int[] arr) {
+        int i =0;
+        int count=0;
+        int temp;
+        int  n = arr.length;
+        while(i<n){
+            if(arr[i] != i+1){
+                temp = arr[i];
+                arr[i] = arr[temp-1];
+                arr[temp-1]=temp;
+                count++;
+            }
+            else{
+                i++;
+            }
+        }
+        return count;
+    }
+
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) throws IOException {
+   BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        int n = scanner.nextInt();
+        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+
+        int[] arr = new int[n];
+
+        String[] arrItems = scanner.nextLine().split(" ");
+        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+
+        for (int i = 0; i < n; i++) {
+            int arrItem = Integer.parseInt(arrItems[i]);
+            arr[i] = arrItem;
+        }
+
+        int res = minimumSwaps(arr);
+
+        bufferedWriter.write(String.valueOf(res));
+        bufferedWriter.newLine();
+
+        bufferedWriter.close();
+
+        scanner.close();
+    }
+}
+
+
+
+Problem solution in Python programming language.
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the minimumSwaps function below.
+def minimumSwaps(arr):
+    temp = [0] * (len(arr) + 1)
+    for pos, val in enumerate(arr):
+        temp[val] = pos
+        pos += 1
+    swaps = 0
+    for i in range(len(arr)):
+        if arr[i] != i+1:
+            swaps += 1
+            t = arr[i]
+            arr[i] = i+1
+            arr[temp[i+1]] = t
+            temp[t] = temp[i+1]
+    return swaps
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input())
+
+    arr = list(map(int, input().rstrip().split()))
+
+    res = minimumSwaps(arr)
+
+    fptr.write(str(res) + '\n')
+
+    fptr.close()
+
+
+
+ 
+Tags:
+hackerrank solutionsinterview prepration kit
+FacebookTwitter
+You may like these posts
+
+ 
+Post a Comment
+0 Comments
+
+
+ 
+Categories
+10 days of statistics
+c
+c++
+data structures
+hackerrank solutions
+interview prepration kit
+java
+javascript
+pc problems
+python solutions
+regex
+technical problems
+Translate
+
+Select Language
+Powered by Google TranslateTranslate
+Subscribe Now
+Free Scholarships
+
+Pages
+HackerRank | Python challenges solutions
+Hackerrank | java challenges solutions
+HackerRank | c plus plus Challenges solutions
+HackerRank | C challenges solutions
+CLOSE ADS
+
+ 
+CLOSE ADS
+
+ 
+Ask you QuestionAsk you Question
+Home
+About
+Contact Us
+Crafted with  by TemplatesYard | Distributed by Blogger
+close

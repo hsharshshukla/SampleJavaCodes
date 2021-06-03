@@ -1,0 +1,53 @@
+import java.util.*;
+class Solution { 
+    // Returns count of possible paths to reach 
+    // cell at row number m and column number n from 
+    // the topmost leftmost cell (cell at 1, 1) 
+    
+	public static String findSubstring(String s, int k) {
+        if(s.length()<=k){
+            k=s.length();
+        }
+    // Write your code here
+    int max=0;
+    //check for vowels in k length and then while adding and removing keep count of existing 
+    //vowel set
+    HashSet<Character> set = new HashSet<>();
+    set.add('a');
+    set.add('e');
+    set.add('i');
+    set.add('o');
+    set.add('u');
+    //for first word of k length
+    int count=0;
+    int endIndex =0;
+    for(int i=0;i<k;i++){
+        if(set.contains(s.charAt(i))){
+            max++;
+        }
+    }
+    int prev=max;
+    for(int i=k;i<s.length();i++){
+        if(set.contains(s.charAt(i))){
+            prev++;
+            
+        }
+        if(set.contains(s.charAt(i-k))){
+            prev--;
+        }
+
+        if(prev>max){
+            max=prev;
+            endIndex=i;
+        }
+        
+    }
+    return (s.substring(endIndex-k+1, endIndex+1));
+}
+
+    // Driver program to test above function 
+    public static void main(String args[]) 
+    { 
+        System.out.println(findSubstring("caberqiitefg", 5)); 
+    } 
+} 

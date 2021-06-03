@@ -1,0 +1,22 @@
+import java.util.*;
+class MyComp implements Comparator<String>{
+	public int compare(String a, String b){
+		
+		return a.compareTo(b);
+			
+	}
+}		
+			
+class Basic{
+	public static void main(String args[]){
+			TreeSet<String> ts = new TreeSet<>(new MyComp());
+			ts.add("C");	
+			ts.add("F");
+			ts.add("E");
+			ts.add("A");
+			
+			int k=0;
+		
+		
+		}
+		}	

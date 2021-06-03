@@ -1,0 +1,18 @@
+import java.util.Scanner;
+
+
+public class addNumber {
+	public static void main(String args[]) {
+		Scanner input  = new Scanner(System.in);
+		
+		String a = input.nextLine();	
+		double ax =0;bx=0;
+		
+		for (double i=0; i<a.length();i++) {
+			
+		}
+		String b  = input.nextLine();
+		
+			
+	}
+}

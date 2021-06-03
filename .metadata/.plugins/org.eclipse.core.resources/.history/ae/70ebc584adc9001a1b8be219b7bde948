@@ -1,0 +1,11 @@
+import java.util.*;
+interface Solution { 
+ void getSugary();
+} 
+
+abstract class Pancake implements Solution{}
+
+class BlueberryPancake implements Pancake{
+	public void getSugary();
+}
+

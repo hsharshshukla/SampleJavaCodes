@@ -1,0 +1,65 @@
+import java.util.*;
+class Basic {
+//    public int maximalRectangle(char[][] mat) {
+	public static void main(String args[]) {
+		char[][] mat= new char[][] {{'0','1'},{'1','0'}};
+        if(mat==null){
+            //return 0;
+        }
+        if(mat.length==0){
+            //return 0;
+        }
+        int[][] matrix = new int[mat.length][mat[0].length];
+        
+        //Convert char to int
+        for(int x=0;x<matrix.length;x++){
+            for(int y=0;y<matrix[x].length;y++){
+                if(mat[x][y]=='1'){
+                    matrix[x][y]=1;
+                }
+                else{
+                    matrix[x][y]=0;        
+                  }
+            }
+        }
+        
+        int max_area=0;
+        
+        for(int j=0;j<matrix.length;j++){
+            int i=0;
+            int n=matrix[i].length;
+            int top=0;
+            //
+            if(j != 0){
+                for(int k=0;k<n;k++){
+                	if(matrix[j][k]!=0) {
+                    matrix[j][k]=matrix[j-1][k] + matrix[j][k];}
+                    }
+            }
+            Stack<Integer> s = new Stack<>();
+         while(i<n){
+             if(s.empty() || matrix[j][s.peek()]<= matrix[j][i]){
+                 s.push(i++);
+             }else{
+                 top =  s.peek();
+                 s.pop();
+                 
+                 int area = matrix[j][top] * (s.empty() ? i: i-s.peek()-1);
+                 max_area = Math.max(max_area,area);
+                 
+             }
+         }
+            while(s.empty()==false){
+                top = s.peek();
+                s.pop();
+                int area = matrix[j][top] * (s.empty() ? i: i-s.peek()-1);
+                 max_area = Math.max(max_area,area);
+                 
+            }
+            
+        }
+        
+        //return max_area;
+        System.out.print(max_area);
+    }
+}

@@ -1,0 +1,131 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.function.*;
+import java.util.regex.*;
+import java.util.stream.*;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
+
+
+
+class Result {
+
+    /*
+     * Complete the 'vanity' function below.
+     *
+     * The function is expected to return a STRING_ARRAY.
+     * The function accepts following parameters:
+     *  1. STRING_ARRAY codes
+     *  2. STRING_ARRAY numbers
+     */
+
+    public static List<String> vanity(List<String> codes, List<String> numbers) {
+       List<String> res  = new ArrayList<>();
+       //Store codes in hashmap for numbers
+       HashMap<Character,Character> map = new HashMap<>();
+        map.put('A','2' );
+        map.put('B','2' );
+        map.put('C','2' );
+        map.put('D','3' );
+        map.put('E','3' );
+        map.put('F','3' );
+        map.put('G','4' );
+        map.put('H','4' );
+        map.put('I','4' );
+        map.put('J','5' );
+        map.put('K','5' );
+        map.put('L','5' );
+        map.put('M','6' );
+        map.put('N','6' );
+        map.put('O','6' );
+        map.put('P','7' );
+        map.put('Q','7' );
+        map.put('R','7' );
+        map.put('S','7' );
+        map.put('T','8' );
+        map.put('U','8' );
+        map.put('V','8' );
+        map.put('W','9' );
+        map.put('X','9' );
+        map.put('Y','9' );
+        map.put('Z','9' );
+
+        //matching
+       int cno = codes.size();
+       int pno = numbers.size();
+
+       for(int i=0;i<cno;i++){
+           String temp = codes.get(i);
+           //match for all numbers 
+           for (int j=0;j<pno;j++){
+        	   /*
+               String ptemp = numbers.get(j);
+               int index=0;
+               for(int k=1;k<ptemp.length();k++){
+                   //convert digit to it phone char
+                   char tc = map.get(temp.charAt(index));
+					
+                   if(ptemp.charAt(k) != tc){
+                       index=0;
+                   }
+                   else {
+                	   index++;
+                   }
+                   if(index == temp.length()){
+                       res.add(ptemp);
+                   }
+                   
+               }*/
+           }
+       }
+
+      Collections.sort(res);
+
+        return res;
+    }
+
+}
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(("C:\\Users\\Harsh\\Desktop\\sample1.txt")));
+
+        int codesCount = Integer.parseInt(bufferedReader.readLine().trim());
+
+        List<String> codes = IntStream.range(0, codesCount).mapToObj(i -> {
+            try {
+                return bufferedReader.readLine();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        })
+            .collect(toList());
+
+        int numbersCount = Integer.parseInt(bufferedReader.readLine().trim());
+
+        List<String> numbers = IntStream.range(0, numbersCount).mapToObj(i -> {
+            try {
+                return bufferedReader.readLine();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        })
+            .collect(toList());
+
+        List<String> result = Result.vanity(codes, numbers);
+
+        bufferedWriter.write(
+            result.stream()
+                .collect(joining("\n"))
+            + "\n"
+        );
+
+        bufferedReader.close();
+        bufferedWriter.close();
+    }
+}

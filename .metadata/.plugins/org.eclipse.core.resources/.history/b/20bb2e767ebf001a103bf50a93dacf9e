@@ -1,0 +1,58 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+class Result {
+
+    /*
+     * Complete the 'maxScore' function below.
+     *
+     * The function is expected to return an INTEGER.
+     * The function accepts following parameters:
+     *  1. INTEGER_ARRAY a
+     *  2. INTEGER m
+     */
+
+    public static int maxScore(List<Integer> a, int m) {
+    // Write your code here
+        Collections.sort(a);
+        int count=0;
+        for(int i=0;i<a.size();i++){
+            int temp = calscore(a,i,m);
+            count= count + temp;
+                
+        }
+        return count;
+
+    }
+    public static int calscore(List<Integer> a, int i,int m){
+        int temp1 =0;
+        for(int j=0;j<m;j++){
+            temp1 = temp1 + a.remove(0);
+            if(a.size()<m){
+               j=0; 
+            }
+            if(a.size()==0){
+                break;
+            }
+        }
+        
+        //
+        return (temp1 * i);
+        
+    }
+
+}
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        int[] a = new int[] {1,5,4,2,3};
+        int ans = Result.maxScore(a, m);
+
+       
+    }
+}

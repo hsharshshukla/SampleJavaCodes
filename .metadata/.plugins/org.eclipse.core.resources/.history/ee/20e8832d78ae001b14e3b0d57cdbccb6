@@ -1,0 +1,4 @@
+import java.rmi.*;
+public class AddServerIntf {
+
+}

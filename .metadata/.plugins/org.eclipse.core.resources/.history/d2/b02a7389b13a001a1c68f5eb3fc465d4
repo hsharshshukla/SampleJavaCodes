@@ -1,0 +1,19 @@
+import java.util.Scanner;
+
+
+public class addNumber {
+	public static void main(String args[]) {
+		Scanner input  = new Scanner(System.in);
+		double a=0 ,b=0;
+		double i=0;
+		while(input.hasNext()) {
+			Scanner line1  = new Scanner(input.nextLine());			
+			while(line1.hasNext()) {			
+				Double d  = new Double(line1.nextInt());
+				a = a + Math.pow(d, i);
+			}
+			
+		}
+		
+	}
+}

@@ -1,0 +1,22 @@
+import java.util.*;
+public class Solution {
+	public static void main(String args[]) {
+		int[] nums  = new int[] {1,2};
+		List<List<Integer>> subsets = new ArrayList<>();
+		generatesubset(0,nums,new ArrayList<Integer>(), subsets);
+		
+		
+	}
+	
+	public static void generatesubset(int index,int[] nums, List<Integer> current, List<List<Integer>> subsets) {
+		subsets.add(new ArrayList<>(current));
+		for (int i=0; i<nums.length;i++) {
+			current.add(nums[i]);
+			generatesubset(index+1,nums,current,subsets);
+			current.remove(current.size()-1);;
+			
+		}
+		
+		
+	}
+}

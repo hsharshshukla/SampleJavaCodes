@@ -1,0 +1,40 @@
+import java.util.*;
+
+class Solution{
+	
+	public static void main(String[] args) {
+		
+		bstNode bstroot = new bstNode(9);
+		bstroot.left = new bstNode(2);
+		bstroot.right = new bstNode(5);
+		bstroot.left.left = new bstNode(1);
+		bstroot.left.right = new bstNode(3);
+		Solution sl  = new Solution();
+		sl.isBST(bstroot);		
+		
+	}
+	public boolean isBST(bstNode root) {
+		Stack<bstNode> stk  = new Stack<>();
+		stk.push(root);
+		bstNode temp  = root;
+		
+		while(!stk.isEmpty()) {
+			
+			
+		}
+		
+		return true;
+	}
+	
+}
+
+class bstNode{
+	int data;
+	bstNode left;
+	bstNode right;
+	bstNode (int d){
+		data = d;
+		left = null;
+		right = null;
+	}
+}

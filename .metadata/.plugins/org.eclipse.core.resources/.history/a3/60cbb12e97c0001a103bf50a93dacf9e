@@ -1,0 +1,150 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+class Result {
+
+    /*
+     * Complete the 'getMaxCharCount' function below.
+     *
+     * The function is expected to return an INTEGER_ARRAY.
+     * The function accepts following parameters:
+     *  1. STRING s
+     *  2. 2D_INTEGER_ARRAY queries
+     */
+
+    public static List<Integer> getMaxCharCount(String s, List<List<Integer>> queries) {
+    // queries is a n x 2 array where queries[i][0] and queries[i][1] represents x[i] and y[i] for the ith query.
+        //length of string
+        int l = s.length();
+        
+        //Prepare hashmap with character and index of character
+        HashMap<Character,List<Integer>> map = new HashMap<>();
+        for(int i=0;i<l;i++){
+            char temp = s.charAt(i);
+            temp =Character.toUpperCase(temp);
+            if(!map.containsKey(temp) ){
+                List<Integer> list = new ArrayList<>();
+                list.add(i);
+                map.put(temp,list);
+            }else{
+                List<Integer> list = map.get(temp);
+                list.add(i);
+                
+                map.put(temp,list);
+            }
+        }
+        
+        //Processing Query
+        List<Integer> resul= new ArrayList<>();
+        //int cs=0;
+        while(!queries.isEmpty()){
+            int cs=0;
+            List<Integer> list = new ArrayList<>();
+            
+            list = queries.remove(0);
+            HashSet<Character> set = new HashSet<>();
+            int i= list.remove(0);
+            int end = list.remove(0);
+            String tempString = s.substring(i,end+1);
+            char[] tempchar = tempString.toCharArray();
+            Arrays.sort(tempchar);
+            char c = tempchar[tempchar.length-1];
+            List<Integer> tlist = map.get(c);
+            Collections.sort(tlist);
+           // int p =0;
+            
+            
+            while(!tlist.isEmpty()) {
+            	int tp = tlist.remove(0);
+            	if(tp>=i && tp<=end) {cs++;}
+            }
+            resul.add(cs);
+                
+        }
+    return resul;
+    }
+
+}
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        //BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        //BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        int n = 8;
+
+        String s = "aAabBcba";
+
+        int q = 5;
+
+        List<List<Integer>> query = new ArrayList<>();
+
+        //for (int i = 0; i < q; i++) {
+            //String[] queryRowTempItems ;
+
+            List<Integer> queryRowItems = new ArrayList<>();
+            List<Integer> queryRowItems1 = new ArrayList<>();
+            List<Integer> queryRowItems2 = new ArrayList<>();
+            List<Integer> queryRowItems3 = new ArrayList<>();
+            List<Integer> queryRowItems4 = new ArrayList<>();
+            
+            
+            //for (int j = 0; j < 2; j++) {
+                int queryItem = 2;
+                queryRowItems.add(queryItem);
+            //}
+                queryItem = 6;
+                queryRowItems.add(queryItem);
+
+                query.add(queryRowItems);
+                
+                //2
+                //queryRowItems.clear();
+                queryItem = 1;
+                queryRowItems1.add(queryItem);
+            //}
+                queryItem = 2;
+                queryRowItems1.add(queryItem);
+
+                query.add(queryRowItems1);
+        //} //3
+                //queryRowItems2.clear();
+                queryItem = 2;
+                queryRowItems2.add(queryItem);
+            //}
+                queryItem = 2;
+                queryRowItems2.add(queryItem);
+
+                query.add(queryRowItems2);
+                
+                
+                //4
+                //queryRowItems.clear();
+                queryItem = 0;
+                queryRowItems3.add(queryItem);
+            //}
+                queryItem = 4;
+                queryRowItems3.add(queryItem);
+
+                query.add(queryRowItems3);
+                
+                //5
+                //queryRowItems.clear();
+                queryItem = 0;
+                queryRowItems4.add(queryItem);
+            //}
+                queryItem = 7;
+                queryRowItems4.add(queryItem);
+
+                query.add(queryRowItems4);
+
+        List<Integer> ans = Result.getMaxCharCount(s, query);
+        int k=0;
+        
+    }
+}

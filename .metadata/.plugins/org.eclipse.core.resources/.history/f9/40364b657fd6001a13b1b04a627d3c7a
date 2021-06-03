@@ -1,0 +1,49 @@
+import java.util.*;
+class Solution {
+	public static void main(String[] args) {
+		System.out.println(longestPalindrome("abcabcbb"));
+	}
+	public static String longestPalindrome(String s) {
+        String lps ="";
+        int n = s.length();
+        int[][] matrix = new int[n][n];
+        int max_length = 0; // length of LPS
+        int start =0; //Starting index of LPS
+        for (int i=0;i<n;i++){
+            matrix[i][i] =1;
+            max_length=1;
+            start = i;
+        }
+        
+        //for 2 char string
+        
+        for (int i=0;i<n-1;i++){
+           if(s.charAt(i)==s.charAt(i+1)){
+               matrix[i][i+1]=1;
+               max_length=2;
+               start=i;
+               
+           }
+        }
+        
+        // 2+ char string
+        
+        for (int k=3;k<=n;++k){
+            for (int i=0;i<n-k+1;++i){
+                int j= i+k-1;
+                
+                if(matrix[i+1][j-1]==1 && s.charAt(i)==s.charAt(j)){
+                    matrix[i][j]=1;
+                    if(k>max_length){
+                        max_length=k;
+                        start=i;
+                    }
+                }
+            }
+        }
+        for (int i=start;i<=start+max_length-1;i++){
+            lps += s.charAt(i);
+        }
+        return lps;
+    }
+}

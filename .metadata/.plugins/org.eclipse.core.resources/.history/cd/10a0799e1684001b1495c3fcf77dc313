@@ -1,0 +1,60 @@
+import java.util.*;
+ //Definition for a binary tree node.
+  class TreeNode {
+      int val;
+      TreeNode left;
+      TreeNode right;
+      TreeNode() {}
+      TreeNode(int val) { this.val = val; }
+      TreeNode(int val, TreeNode left, TreeNode right) {
+          this.val = val;
+          this.left = left;
+          this.right = right;
+      }
+  }
+ 
+class Basic {
+//    public void flatten(TreeNode root) {
+	public static void main(String args[]) {
+		TreeNode root = new TreeNode(1);
+		root.left = new TreeNode(2);
+		root.right = new TreeNode(5);
+		root.left.left = new TreeNode(3);
+		root.left.right = new TreeNode(4);
+		root.right.right = new TreeNode(6);
+		
+        if(root ==null){
+            return;
+        }
+        
+        Stack<TreeNode> s = new Stack<>();
+        TreeNode curr = root;
+        while(s.size()>0){
+            while(curr.left !=null){
+                s.push(curr);
+                curr = curr.left;
+            }
+            curr = s.pop();
+            if(curr.right!=null && curr.left !=null) {
+            	TreeNode temp = curr.right;
+            	curr.right = curr.left;
+                curr.left = null;
+                TreeNode t = curr;
+                while(t.right !=null) 
+                {
+                	t = t.right;
+                }
+                t.right = temp;
+                //curr.right.right = temp;
+                s.push(temp);
+            }
+            else if(curr.right ==null && curr.left !=null) {
+            	curr.right = curr.left;
+            }
+            //s.push(curr.right.right);
+//            curr.right = curr.left;
+            
+        }
+        
+    }
+}

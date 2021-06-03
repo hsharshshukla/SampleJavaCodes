@@ -1,0 +1,22 @@
+import java.util.Scanner;
+
+
+public class addNumber {
+	public static void main(String args[]) {
+		Scanner input  = new Scanner(System.in);
+		double a=0 ,b=0;
+		double i=0;
+		while(input.hasNext()) {
+			Scanner line1  = new Scanner(input.nextLine());	
+			double j=0;
+			while(line1.hasNext()) {
+				int temp  =line1.nextInt();
+				Double d  = new Double(temp);
+				a = a + Math.pow(d, i);
+				j++;
+			}
+			i++;
+		}
+		
+	}
+}

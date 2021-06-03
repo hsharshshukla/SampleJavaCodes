@@ -1,0 +1,115 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+class Result {
+
+    /*
+     * Complete the 'getMaxCharCount' function below.
+     *
+     * The function is expected to return an INTEGER_ARRAY.
+     * The function accepts following parameters:
+     *  1. STRING s
+     *  2. 2D_INTEGER_ARRAY queries
+     */
+
+    public static List<Integer> getMaxCharCount(String s, List<List<Integer>> queries) {
+    // queries is a n x 2 array where queries[i][0] and queries[i][1] represents x[i] and y[i] for the ith query.
+        //length of string
+        int l = s.length();
+        
+        //Prepare hashmap with character and index of character
+        HashMap<Character,List<Integer>> map = new HashMap<>();
+        for(int i=0;i<l;i++){
+            char temp = s.charAt(i);
+            Character.toUpperCase(temp);
+            if(!map.containsKey(temp) ){
+                List<Integer> list = new ArrayList<>();
+                list.add(i);
+                map.put(temp,list);
+            }else{
+                List<Integer> list = map.get(s.charAt(i));
+                list.add(i);
+                
+                map.put(temp,list);
+            }
+        }
+        
+        //Processing Query
+        List<Integer> resul= new ArrayList<>();
+        //int cs=0;
+        while(!queries.isEmpty()){
+            int cs=0;
+            List<Integer> list = new ArrayList<>();
+            
+            list = queries.remove(0);
+            HashSet<Character> set = new HashSet<>();
+            int i= list.remove(0);
+            int end = list.remove(0);
+            String tempString = s.substring(i,end+1);
+            char[] tempchar = tempString.toCharArray();
+            Arrays.sort(tempchar);
+            char c = tempchar[tempchar.length-1];
+            List<Integer> tlist = map.get(c);
+            Collections.sort(tlist);
+           // int p =0;
+            
+            for(int k=i;k<=end;k++){
+                if(!tlist.isEmpty()){
+                    cs++;
+                }
+            }
+            resul.add(cs);
+                
+        }
+    return resul;
+    }
+
+}
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        int n = Integer.parseInt(bufferedReader.readLine().trim());
+
+        String s = bufferedReader.readLine();
+
+        int q = Integer.parseInt(bufferedReader.readLine().trim());
+
+        List<List<Integer>> query = new ArrayList<>();
+
+        for (int i = 0; i < q; i++) {
+            String[] queryRowTempItems = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
+
+            List<Integer> queryRowItems = new ArrayList<>();
+
+            for (int j = 0; j < 2; j++) {
+                int queryItem = Integer.parseInt(queryRowTempItems[j]);
+                queryRowItems.add(queryItem);
+            }
+
+            query.add(queryRowItems);
+        }
+
+        List<Integer> ans = Result.getMaxCharCount(s, query);
+
+        for (int i = 0; i < ans.size(); i++) {
+            bufferedWriter.write(String.valueOf(ans.get(i)));
+
+            if (i != ans.size() - 1) {
+                bufferedWriter.write("\n");
+            }
+        }
+
+        bufferedWriter.newLine();
+
+        bufferedReader.close();
+        bufferedWriter.close();
+    }
+}

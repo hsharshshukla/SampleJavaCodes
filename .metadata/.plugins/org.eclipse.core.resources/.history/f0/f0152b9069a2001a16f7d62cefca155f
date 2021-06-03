@@ -1,0 +1,64 @@
+class Solution {
+	public static void main(String args[]) {
+		Solution sl = new Solution();
+		/*char matrix[][] = {{'0', '1','1' , '0','1' },  
+                {'1', '1', '0', '1', '0'},  
+                {'0', '1','1','1','0'}, 
+                {'1', '1', '1', '1', '0'}, 
+                {'1', '1', '1', '1', '1'}, 
+                {'0', '0', '0', '0', '0'}};*/
+		//char matrix[][] = {{'0', '1' }};
+		char matrix[][] = {{'1','1','1','1'},
+						   {'1','1','1','1'},
+						   {'1','1','1','1'}};
+		System.out.print(sl.maximalSquare(matrix));		
+		
+	}
+	
+    public int maximalSquare(char[][] matrix) {
+    	  if(matrix==null||matrix.length==0){
+              return 0;
+          }
+          char[][] sum = new char[matrix.length][matrix[0].length];
+           int max=0;
+          for(int i=0;i<matrix[0].length;i++){
+              sum[0][i]=matrix[0][i];
+              
+              int sumint  =Integer.parseInt(String.valueOf(matrix[0][i]));
+              if(max<sumint){
+                         max=sumint;
+              }
+              
+              
+          }
+          for(int i=0;i<matrix.length;i++){
+              sum[i][0]=matrix[i][0];
+          int sumint  =Integer.parseInt(String.valueOf(matrix[i][0]));
+              if(max<sumint){
+                         max=sumint;
+              }
+          }
+          
+          for(int i=1;i<matrix.length;i++){
+              for(int j=1;j<matrix[0].length;j++){
+                 if(matrix[i][j]=='1'){
+                     int l=Integer.parseInt(String.valueOf(sum[i][j-1]));
+                     int u=Integer.parseInt(String.valueOf(sum[i-1][j]));
+                     int d=Integer.parseInt(String.valueOf(sum[i-1][j-1]));
+                     int sumint =Math.min(l,Math.min(u,d)) + 1;
+                     sum[i][j] =  Integer.toString(sumint).charAt(0);
+                     if(max<sumint){
+                         max=sumint;
+                     }
+                 }else{
+                     sum[i][j]=0;
+                 } 
+                  
+              }
+          }
+          
+          return (max*max);
+          
+        
+    }
+}

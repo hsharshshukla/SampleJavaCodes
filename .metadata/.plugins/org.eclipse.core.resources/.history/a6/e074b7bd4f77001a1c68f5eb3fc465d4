@@ -1,0 +1,29 @@
+
+public class NumberofIslands {
+public static void main(String args[]) {
+int[][] matr = new int [][] {{1,1,1,1,0},
+							 {1,1,0,1,0},
+							 {1,1,0,0,0},
+							 {0,0,0,0,0}};	
+int[][] mats = new int [][] {{1,1,0,0,0},{1,1,0,0,0},{0,0,1,0,0},{0,0,0,1,1}};
+int count = nos(matr);
+System.out.println(count);
+
+}
+public static int nos(int[][] grid) {
+	int count=0;
+	for (int i=0;i<grid.length;i++) {
+		for (int j=0;j<grid[i].length;j++) {
+			count++;
+				if(grid[i][i]==1) {
+					calldfs(grid,i,j);
+				}
+		}
+	}
+	return count;
+	
+}
+public void calldfs() {
+	
+}
+}

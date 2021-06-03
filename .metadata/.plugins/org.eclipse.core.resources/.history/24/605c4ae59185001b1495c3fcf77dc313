@@ -1,0 +1,72 @@
+
+// Definition for a Node.
+class Node {
+    int val;
+    Node next;
+    Node random;
+
+    public Node(int val) {
+        this.val = val;
+        this.next = null;
+        this.random = null;
+    }
+}
+
+
+class Basic {
+//    public Node copyRandomList(Node head) {
+	public static void main(String args[]) {
+		
+//		Node head = new Node();
+		Node head = new Node(7);  
+	    head.next = new Node(13);  
+	    head.next.next = new Node(11);  
+	    head.next.next.next = new Node(10);  
+	    head.next.next.next.next = new Node(1);  
+		
+	    //setting up next and random pointers 
+	    head.random = null;
+	    //head.next = new Node(13);  
+	    head.next.random = head;  
+	    head.next.next.random = head.next.next.next.next ;  
+	    head.next.next.next.random = head.next.next;  
+		
+	    
+		Node node = head;
+		//Creating new links 
+        while(node !=null){
+            Node temp = new Node(node.val);
+            temp.next = node.next;
+            node.next = temp;
+            node = temp.next;
+        }
+        
+        //setting up random links for new list
+             
+        node = head;
+        while(node !=null){
+            node.next.random=node.random;
+            node = node.next.next;          
+            
+        }
+        
+        //setting up originals
+        node = head;
+        Node result  = head.next;
+        Node temp= result;
+        while(node.next !=null && temp.next !=null ){
+            node.next = node.next.next;
+            node = node.next;
+            
+            temp.next = temp.next.next;
+            temp = temp.next;
+           
+        }
+        node.next = null;
+        temp.next = null;
+        
+        int k=0;
+        //return result;
+        
+    }
+}

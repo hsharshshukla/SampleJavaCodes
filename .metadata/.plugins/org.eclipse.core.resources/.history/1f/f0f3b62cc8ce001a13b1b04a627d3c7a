@@ -1,0 +1,70 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+
+        Scanner in = new Scanner(System.in);
+        int n  = in.nextInt();
+        int m = in.nextInt();
+        int[] arr = new int[n+1];
+        for(int i=1;i<=n;i++){
+            arr[i] = in.nextInt();
+        }
+        for(int q=0;q<m;q++){
+            int type = in.nextInt();
+            if(type==1){
+                int i = in.nextInt();
+                int j = in.nextInt();
+               arr= processfront(arr,i,j);
+            }else{
+                int i = in.nextInt();
+                int j = in.nextInt();
+               arr = processback(arr,i,j);
+            }
+        }
+
+        //
+
+    }
+    public static int[] processfront(int[] arr,int i,int j){
+        int[] temp = new int[arr.length];
+        int tempind = 1;
+        for(int p=i;p<=j;p++){
+            temp[tempind]=arr[p];   
+            tempind++;
+        }
+        for(int p=1;p<i;p++){
+            temp[tempind] = arr[p];
+            tempind++;
+        }
+        for(int p=j+1;p<arr.length+1;p++){
+            temp[tempind]=arr[p];
+            tempind++;
+        }
+        return temp;
+    }
+    public static int[] processback(int[] arr,int i,int j){
+        int[] temp = new int[arr.length];
+        int tempind = 1;
+        for(int b=0;b<i;b++){
+            temp[tempind]=arr[b];
+            tempind++;
+        }
+        for(int b=j+1;b<arr.length+1;b++){
+            temp[tempind] = arr[b];
+            tempind++;
+        }
+        for(int b=i;b<=j;b++){
+            temp[tempind] = arr[b];
+            tempind++;
+        }
+
+        return temp;
+    }
+}
